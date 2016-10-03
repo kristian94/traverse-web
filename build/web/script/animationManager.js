@@ -53,7 +53,7 @@ function getAnimationManager() {
                     }, {
                         duration: self.menuSlideSettings.animationDuration,
                         step:function(x){
-                            var deg = x * 360 / 100;
+                            var deg = x * 180 / 100;
                             var nextOpacity = x * self.menuSlideSettings.topBarTextOpacity / 100;
                             
                             $(topBarText).css('opacity', nextOpacity);

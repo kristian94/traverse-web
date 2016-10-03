@@ -28,7 +28,11 @@ div{
     top: 20%;
     width: 100%;
     height: 80%;
-    background: linear-gradient(to top, #FC925D, #002D59);
+    /*background: linear-gradient(to top, #FC925D, #002D59);*/
+    background: linear-gradient(to top, 
+        /*#FC925D,*/ 
+        #C79379,
+        #002D59);
 }
 
 .sun{
@@ -36,7 +40,7 @@ div{
     z-index: -998;
     left: calc(50% - 10em);
     bottom: -10em;
-    border: 10em solid #E08722;
+    border: 10em solid #C98263;
     border-radius: 10em;
 }
 
@@ -136,6 +140,7 @@ div{
     top: 0;
     width: calc(100% - 2.5em);
     background: rgba(50,50,50,0.5);
+    
     /*background: #404D52;*/
     /*background: #273338;*/
     /*background: #1C243B;*/
@@ -161,6 +166,7 @@ div{
     z-index: 6;
     right: 0;
     width: 2em;
+    transform: rotate(180deg);
     /*background: #9DBEC9;*/
 
     /*slightly darker*/
