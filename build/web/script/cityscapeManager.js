@@ -2,7 +2,9 @@ function getCityscapeManager(mainParentIn) {
     return Object.seal({
         mainParent: mainParentIn,
         leftOffset: -2,
-        botOffset: -1,
+        botOffset: -1
+                -2
+        ,
         houseSpacing: -1,
         zIndexOffset: -2,
         minWidth: 1.5,
@@ -17,7 +19,16 @@ function getCityscapeManager(mainParentIn) {
             , {height: 4, width: 6}
             , {height: 3, width: 2}
         ],
-        colorThemes: [{
+        colorThemes: [
+//            {
+//                brightA: '#4F5157',
+//                brightB: '#6A6C73',
+//                mediumA: '#35373B',
+//                mediumB: '#2C2D30',
+//                darkA: '#27282B',
+//                darkB: '#4A4D52'
+//            }
+            {
                 brightA: '#8C6E5F',
                 brightB: '#8C7964',
                 mediumA: '#735D53',
@@ -32,7 +43,8 @@ function getCityscapeManager(mainParentIn) {
                 mediumB: '#4F6353',
                 darkA: '#2F362C',
                 darkB: '#2C362D'
-            }],
+            }
+        ],
         windowColors: [
 //            '#DED592',
 //            '#EDBEBE',

@@ -24,30 +24,30 @@ function getViewManager() {
 //                this.mapViews(this.viewMappings.standard);
 //            }
 //        },
-        loadIndexPage: function () {
+        loadIndexPage: function (callback) {
             if (this.indexPage) {
-                this.loadViewAbstract(this.indexPage);
+                this.loadViewAbstract(this.indexPage, callback);
             }
 
         },
-        loadNextView: function (nextViewIn) {
+        loadNextView: function (nextViewIn, callback) {
 
             if (nextViewIn) {
-                this.loadViewAbstract(nextViewIn);
+                this.loadViewAbstract(nextViewIn, callback);
                 if (this.currentView) {
                     this.previousView = this.currentView;
                 }
                 this.currentView = nextViewIn;
             }
         },
-        loadPreviousView: function () {
+        loadPreviousView: function (callback) {
             if (this.previousView) {
-                this.loadViewAbstract(this.previousView);
+                this.loadViewAbstract(this.previousView, callback);
             } else {
-                this.loadViewAbstract(this.frontPage);
+                this.loadViewAbstract(this.frontPage, callback);
             }
         },
-        loadViewAbstract: function (nextViewIn) {
+        loadViewAbstract: function (nextViewIn, callback) {
             console.log('loading view: ' + nextViewIn);
             var self = this;
             $(this.mainParentElement).hide();
@@ -66,6 +66,7 @@ function getViewManager() {
 //                        
 //                    }, 50);
                     self.beforeRender();
+                    callback();
 
                 },
                 error: function (error) {

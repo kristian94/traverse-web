@@ -5,30 +5,36 @@ $(document).ready(function () {
     var intervalManager = getIntervalManager();
     var utilManager = getUtilManager();
 
-
+    //VIEWMANAGER SETUP
     viewManager.beforeRenderFuncs.push(function () {
         utilManager.removeScrollbarAbsolute($('.middle-container-content'));
     });
-
     viewManager.mainParentElement = $('.viewParent');
     viewManager.indexPage = 'views/landing.html';
-    viewManager.loadIndexPage();
+    viewManager.loadIndexPage(function () {
+        //CALLBACK TRIGGERED AFTER VIEW IS LOADED
+        
+        //ANIMATION MANAGER SETUP
+        animationManager.fadeInTitle($('.title'));
+        animationManager.mapSlideMenu();
+        
+        //CITYSCAPE MANAGER SETUP
+        cityscapeManager.makeCity();
 
+        //INTERVAL MANAGER SETUP
+        intervalManager.funcs.push(function () {
+            city = cityscapeManager.updateCity();
 
-    animationManager.fadeInTitle($('.title'));
-    var city = cityscapeManager.makeCity();
-
-    setInterval(function () {
-
-    }, 250);
-
-    intervalManager.funcs.push(function () {
-        city = cityscapeManager.updateCity();
-
+        });
+        intervalManager.startInterval();
+        
     });
 
 
-    intervalManager.startInterval();
+
+
+
+
 
 
 
