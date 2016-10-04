@@ -1,11 +1,12 @@
-function getViewManager() {
+function getViewManager(callbackManagerIn) {
 
     return Object.seal({
         mainParentElement: null,
         previousView: null,
         currentView: null,
         indexPage: null,
-        beforeRenderFuncs: [],
+        callbackManager: callbackManagerIn,
+//        beforeRenderFuncs: [],
         viewMappings: {
             standard: [
                 {
@@ -48,7 +49,6 @@ function getViewManager() {
             }
         },
         loadViewAbstract: function (nextViewIn, callback) {
-            console.log('loading view: ' + nextViewIn);
             var self = this;
             $(this.mainParentElement).hide();
 
@@ -58,15 +58,8 @@ function getViewManager() {
                     $(self.mainParentElement).empty();
                     $(self.mainParentElement).append(data);
                     $(self.mainParentElement).show();
-                    self.mapViews(self.viewMappings.standard);
-//                    if (self.beforeRenderFuncs.length === 0) {
-//                        self.beforeRenderFuncs.push(self.mapStandard);
-//                    }
-//                    setTimeout(function () {
-//                        
-//                    }, 50);
-                    self.beforeRender();
-                    callback();
+                    self.mapViews(self.viewMappings.standard);           
+                    self.callbackManager.triggerCallbacksByView(nextViewIn);
 
                 },
                 error: function (error) {
@@ -87,12 +80,13 @@ function getViewManager() {
             $(element).on('click', function () {
                 self.loadNextView(view);
             });
-        },
-        beforeRender: function () {
-            this.beforeRenderFuncs.forEach(function (func) {
-
-                func();
-            });
         }
+//        beforeRender: function () {
+//            this.beforeRenderFuncs.forEach(function (func) {
+//
+//                func();
+//            });
+//        }
+        
     });
 }

@@ -14,8 +14,13 @@ div{
     display: inline-block;
 }
 
+#background{
+    position: absolute;
+}
+
 .nightSky{
     position: fixed;
+    top: 0;
     z-index: -999;
     width: 100%;
     height: 20%;
@@ -95,6 +100,7 @@ div{
 .middle-container{
     top: 3em;
     height: calc(100% - 7em);
+    /*padding-bottom: 3em;*/
     /*padding-bottom: 0.25em;*/
     background: rgba(100,0,175,0.075);
     /*background: rgba(45,77,24,0.1);*/
@@ -109,6 +115,20 @@ div{
     /*background: rgba(60,0,155,0.3);*/
 
 }
+
+.top-container-menu-and-overflow{
+    position: absolute;
+    right: 0;
+    /*background: black;*/
+    width: 100%;
+    height: 3em;
+}
+
+/*@media (min-width:443px){
+    .top-container-menu-and-overflow{
+        width: 25em;
+    }
+}*/
 
 .top-overflow-control{
     overflow: hidden;
@@ -139,6 +159,7 @@ div{
     left: 100%;
     top: 0;
     width: calc(100% - 2.5em);
+    /*width: 20em;*/
     background: rgba(50,50,50,0.5);
     
     /*background: #404D52;*/
@@ -148,18 +169,32 @@ div{
 
 }
 
+/*@media (min-width:704px){
+    .viewParent, .viewParentBackground{
+        width: 40em;
+        left: calc(50% - 20em);
+    }
+}*/
+
+
 
 
 .top-container-menu-item{
-    height: calc(100% - 0.5em);
+    height: calc(100% - 0.75em);
+    border-bottom: 0.25em solid rgba(255,255,255,0.05);
+    margin: 0 0.125em 0 0.125em;
     padding-top: 0.5em;
     float: right;
-    margin-bottom: 10em;
-    width: calc(100% / 3);
+    width: calc(100% / 3 - 0.25em);
     text-align: center;
     font-size: 0.8em;
-    background: radial-gradient(rgba(255,255,255,0.075), rgba(0,0,0,0) ,rgba(0,0,0,0));
+    /*background: radial-gradient(rgba(255,255,255,0.075), rgba(0,0,0,0) ,rgba(0,0,0,0));*/
     /*border-bottom: 0.1em solid black;*/
+    transition: ease-in 0.08s;
+}
+
+.top-container-menu-item:hover{
+    border-color: rgba(255,255,255,0.25)
 }
 
 .top-container-menu-toggle{
@@ -214,7 +249,7 @@ div{
     /*margin: 1em 1em 0 1em;*/
     padding: 1em 1em 0 1em;
     width: calc(100% - 2em);
-    height: calc(100% - 1em);
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -282,7 +317,7 @@ div{
 }
 .article-spacer-centerpiece{
     margin-top: 0.6em;
-    opacity: 0.5;
+    opacity: 0.2;
     top: 2em;
     border: 0.2em solid rgb(230,230,230);
     border-radius: 0.5em;
@@ -293,6 +328,30 @@ div{
 .article-text{
     color: #CCC8C0;
     margin-bottom: 0.8em;
+}
+
+
+[class^="article-bottom-arrow-"] {
+    width: 0.75em;
+    background: #58BF52;
+    height: 0.25em;
+    position: absolute;
+    bottom: 1em;
+    opacity: 0;
+}
+
+
+.article-bottom-arrow-01{
+    
+    transform: skewY(30deg);
+    /*left: calc(50% - 2em);*/
+    right: 1.25em;
+}
+
+.article-bottom-arrow-02{
+    transform: skewY(-30deg);
+    /*left: calc(50%);*/
+    right: 0.5em;
 }
 
 /*[class^="article-accent-"] {
