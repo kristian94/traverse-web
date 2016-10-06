@@ -8,7 +8,7 @@ function getAnimationManager() {
             onLeft: 0,
             offLeft: 100,
             unit: '%',
-            animationDuration: 500,
+            animationDuration: 750,
             topBarTextOpacity: null
         },
         fadeInTitle: function (title, callback) {
@@ -64,6 +64,16 @@ function getAnimationManager() {
                 duration: duration
             });
         },
+        changeBackgroundOnHover: function (element, newBg) {
+            var origBg = $(element).css('background');
+//            $(element).css('transition', '');
+            $(element).hover(function () {
+                $(this).css('background', newBg);
+            }, function () {
+                $(this).css('background', origBg);
+            });
+
+        },
         mapSlideMenu: function () {
             var self = this;
             var func = function (direction) {
@@ -87,14 +97,20 @@ function getAnimationManager() {
                 if (self.menuSlideSettings.topBarTextOpacity == null) {
                     self.menuSlideSettings.topBarTextOpacity = $('.top-container-text').css('opacity');
                 }
+                var degStart = 0;
+                var degEnd = 180;
+
 
                 $(toggle).on('click', function () {
                     $(toggle.unbind('click'));
                     $(menu).animate({
-                        left: left + self.menuSlideSettings.unit
+//                        left: left + self.menuSlideSettings.unit
+                            transform: 'translateX(-24em)'
                     }, {
                         duration: self.menuSlideSettings.animationDuration,
                         step: function (x) {
+                            console.log(x);
+                            
                             var deg = x * 180 / 100;
                             var nextOpacity = x * self.menuSlideSettings.topBarTextOpacity / 100;
 
@@ -103,7 +119,16 @@ function getAnimationManager() {
 
 
                         },
+//                        progress: function (anim, prog) {
+//                            console.log(Math.round(prog));
+//                            var deg = prog * 180;
+//                            var nextOpacity = prog * self.menuSlideSettings.topBarTextOpacity / 100;
+//
+//                            $(topBarText).css('opacity', nextOpacity);
+//                            $(toggleVisual).css('transform', 'rotate(' + deg + 'deg)');
+//                        },
                         complete: function () {
+//                            console.log('complete');
                             func(nextDirection);
                         }
 

@@ -36,3 +36,29 @@ function getUtilManager() {
         }
     });
 }
+//function lightenColor(hex, lightIncrease) {
+//    var rgb = hexToRgb(hex);
+//    rgb.r = rgb.r + Math.round((255 - rgb.r) * lightIncrease);
+//    rgb.g = rgb.g + Math.round((255 - rgb.g) * lightIncrease);
+//    rgb.b = rgb.b + Math.round((255 - rgb.b) * lightIncrease);
+//    return rgbToHex(rgb.r, rgb.g, rgb.b);
+//}
+//function componentToHex(c) {
+//    console.log(c);
+//    var hex = c.toString(16);
+//    return hex.length == 1 ? "0" + hex : hex;
+//}
+//
+//function rgbToHex(r, g, b) {
+//    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+//}
+//
+//function hexToRgb(hex) {
+//    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+//    return result ? {
+//        r: parseInt(result[1], 16),
+//        g: parseInt(result[2], 16),
+//        b: parseInt(result[3], 16)
+//    }
+//    : null;
+//}

@@ -14,9 +14,13 @@ function getCallbackManager() {
             str = str.substring(9, i);
             return str;
         },
-        addCallback: function (func) {
+        addCallback: function (func, name) {
             var obj = {};
-            obj.name = this.getFunctionName(func);
+            if(name){
+                obj.name = name;
+            }else{
+                obj.name = this.getFunctionName(func);
+            }
             obj.func = func;
             this.callbacks.push(obj);
             var self = this;
@@ -83,14 +87,6 @@ function getCallbackManager() {
                 return null;
             }
         },
-        printViewRelations: function (view) {
-            var viewIndex = this.getViewIndex(view);
-            var relation = this.relations[viewIndex];
-            var self = this;
-            relation.forEach(function (element) {
-                console.log(self.callbacks[element].name);
-            });
-        },
         triggerCallbacksByView: function (view) {
             var viewIndex = this.getViewIndex(view);
             if (viewIndex !== null) {
@@ -104,6 +100,14 @@ function getCallbackManager() {
 
             }
 
+        },
+        printViewRelations: function (view) {
+            var viewIndex = this.getViewIndex(view);
+            var relation = this.relations[viewIndex];
+            var self = this;
+            relation.forEach(function (element) {
+                console.log(self.callbacks[element].name);
+            });
         },
         printEverything: function(){
             console.log('==============');

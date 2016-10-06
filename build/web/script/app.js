@@ -14,18 +14,21 @@ $(document).ready(function () {
     function mapSlideMenu() {
         animationManager.mapSlideMenu();
         utilManager.removeScrollbarAbsolute($('.middle-container-content'));
+        animationManager.changeBackgroundOnHover($('.top-container-menu-toggle'), '#BDD5DE');
+        
+
     }
 
 
 
     //LANDING
-    function fadeInTitleAndArrows() {
+    var fadeInTitleAndArrows = function() {
         animationManager.fadeInTitle($('.title'));
         animationManager.fadeInElement($('.article-bottom-arrow-01'), 500, 0.4);
         animationManager.fadeInElement($('.article-bottom-arrow-02'), 500, 0.4);
         var arrowHandler = animationManager.getArrowHandler();
         intervalManager.pushToFuncs(arrowHandler);
-    }
+    };
 
     //CALLBACKMANAGER SETUP
     var views = [
@@ -33,7 +36,7 @@ $(document).ready(function () {
     ];
     callbackManager.views = views;
     (callbackManager.addCallback(mapSlideMenu))();
-    callbackManager.addCallback(fadeInTitleAndArrows);
+    callbackManager.addCallback(fadeInTitleAndArrows, 'fadeInTitleAndArrows');
     callbackManager.mapViewToCallback('views/landing.html', 'fadeInTitleAndArrows');
 
 
@@ -55,6 +58,8 @@ $(document).ready(function () {
     intervalManager.startInterval();
 
 
+    //MISC
+    
 
 
 //    setTimeout(function () {
