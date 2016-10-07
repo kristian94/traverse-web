@@ -1,7 +1,7 @@
 function getIntervalManager(){
     return Object.seal({
         funcs:[],
-        ticks: 4,
+        ticks: 1,
         tickRate: 1000 / this.ticks,
         intervalId: null,
         startInterval:function(){

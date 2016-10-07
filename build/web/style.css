@@ -145,7 +145,7 @@ div{
     left: 0.25em;
 }
 
-.top-container-menu, .top-container-menu-toggle{
+.top-container-menu, .top-container-menu-toggle, .top-container-login-toggle{
     position: absolute;
     height: 2em;
     border: 0.25em solid;
@@ -168,6 +168,34 @@ div{
 
     /*transform: translateX(-24em);*/
 }
+
+.top-container-menu-toggler, .top-container-login-toggle{
+    z-index: 6;
+    
+}
+
+.top-container-menu-toggle{
+
+    
+    right: 0;
+    width: 2em;
+    /*transform: rotate(180deg);*/
+    /*background: #9DBEC9;*/
+    transition: ease-in 0.07s;
+    /*slightly darker*/
+    background: #93B2BD;
+    /*transform: translateX(px);*/
+}
+
+.top-container-login-toggle{
+    background: #93B2BD;
+    transition: ease-in 0.07s;
+    right: 3em;
+    width: 2em;
+    
+}
+
+
 
 /*@media (min-width:704px){
     .viewParent, .viewParentBackground{
@@ -197,20 +225,9 @@ div{
     border-color: rgba(255,255,255,0.25)
 }
 
-.top-container-menu-toggle{
 
-    z-index: 6;
-    right: 0;
-    width: 2em;
-    transform: rotate(180deg);
-    /*background: #9DBEC9;*/
-    transition: ease-in 0.07s;
-    /*slightly darker*/
-    background: #93B2BD;
-    /*transform: translateX(px);*/
-}
 
-[class^="top-container-menu-toggle-line-"], .top-container-menu, .top-container-menu-toggle{
+[class^="top-container-menu-toggle-line-"], .top-container-menu, .top-container-menu-toggle, .top-container-login-toggle{
     border-color: #0A1D24 !important;
     /*border-color: #9DBEC9 !important;*/
 }

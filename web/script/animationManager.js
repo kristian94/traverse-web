@@ -8,7 +8,7 @@ function getAnimationManager() {
             onLeft: 0,
             offLeft: 100,
             unit: '%',
-            animationDuration: 750,
+            animationDuration: 500,
             topBarTextOpacity: null
         },
         fadeInTitle: function (title, callback) {
@@ -77,20 +77,21 @@ function getAnimationManager() {
         mapSlideMenu: function () {
             var self = this;
             var func = function (direction) {
-                var left;
                 var nextDirection;
-
+                var deg;
+                
                 if (direction === 'out') {
                     nextDirection = 'in';
-                    left = self.menuSlideSettings.onLeft;
+                    deg = -180;
                 } else if (direction === 'in') {
-                    left = self.menuSlideSettings.offLeft;
                     nextDirection = 'out';
+                    deg = 0;
                 } else {
                     console.log('error in animationManager: no direction supplied for mapSlideMenu()');
                     return null;
                 }
                 var toggle = $('#top-container-menu-toggle');
+                
                 var toggleVisual = $('.top-container-menu-toggle');
                 var menu = $('.top-container-menu');
                 var topBarText = $('.top-container-text');
@@ -103,36 +104,37 @@ function getAnimationManager() {
 
                 $(toggle).on('click', function () {
                     $(toggle.unbind('click'));
-                    $(menu).animate({
-//                        left: left + self.menuSlideSettings.unit
-                            transform: 'translateX(-24em)'
-                    }, {
-                        duration: self.menuSlideSettings.animationDuration,
-                        step: function (x) {
-                            console.log(x);
-                            
-                            var deg = x * 180 / 100;
-                            var nextOpacity = x * self.menuSlideSettings.topBarTextOpacity / 100;
+                    var transX;
+                    
+                    
+                    
+                    if(direction == 'out'){
+                        transX = Number(-$('.top-container-menu-and-overflow').width() + 16) + 'px';
+                    }else{
+                        transX = 0;
+                    }
+                    
+                    
+                    
+                    var transX = 'translateX(' + transX + ')';
+                    var rotate = 'rotate('+deg+'deg)';
 
-                            $(topBarText).css('opacity', nextOpacity);
-                            $(toggleVisual).css('transform', 'rotate(' + deg + 'deg)');
+                    var menuOldTransition = $(menu).css('transition');
+                    var toggleOldTransition = $(toggleVisual).css('transition');
 
+                    $(menu).css('transition', 'ease-in 0.5s');
+                    $(toggleVisual).css('transition', 'ease-in 0.5s');
 
-                        },
-//                        progress: function (anim, prog) {
-//                            console.log(Math.round(prog));
-//                            var deg = prog * 180;
-//                            var nextOpacity = prog * self.menuSlideSettings.topBarTextOpacity / 100;
-//
-//                            $(topBarText).css('opacity', nextOpacity);
-//                            $(toggleVisual).css('transform', 'rotate(' + deg + 'deg)');
-//                        },
-                        complete: function () {
-//                            console.log('complete');
-                            func(nextDirection);
-                        }
-
-                    });
+                    $(menu).css('transform', transX);
+                    $(toggleVisual).css('transform', rotate);
+                    setTimeout(function () {
+                        $(menu).css('transition', menuOldTransition);
+                        $(toggleVisual).css('transition', toggleOldTransition);
+                        func(nextDirection);
+                    }, 500);
+                    
+                    
+                    
                 });
             };
             func('out');

@@ -15,14 +15,20 @@ $(document).ready(function () {
         animationManager.mapSlideMenu();
         utilManager.removeScrollbarAbsolute($('.middle-container-content'));
         animationManager.changeBackgroundOnHover($('.top-container-menu-toggle'), '#BDD5DE');
-        
+//        console.log(transX);
+//        setTimeout(function () {
+//            $('.top-container-menu').css('transition', 'ease-in 0.4s');
+//            $('.top-container-menu').css('transform', 'translateX(' + transX + ')');
+//        }, 500);
+
+
 
     }
 
 
 
     //LANDING
-    var fadeInTitleAndArrows = function() {
+    var fadeInTitleAndArrows = function () {
         animationManager.fadeInTitle($('.title'));
         animationManager.fadeInElement($('.article-bottom-arrow-01'), 500, 0.4);
         animationManager.fadeInElement($('.article-bottom-arrow-02'), 500, 0.4);
@@ -59,7 +65,6 @@ $(document).ready(function () {
 
 
     //MISC
-    
 
 
 //    setTimeout(function () {
