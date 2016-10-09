@@ -16,9 +16,9 @@ function getCallbackManager() {
         },
         addCallback: function (func, name) {
             var obj = {};
-            if(name){
+            if (name) {
                 obj.name = name;
-            }else{
+            } else {
                 obj.name = this.getFunctionName(func);
             }
             obj.func = func;
@@ -38,25 +38,33 @@ function getCallbackManager() {
             });
         },
         addView: function (view) {
+            if(view){
             this.views.push(view);
             var i = this.getViewIndex(view);
-            if(this.initArray !== null && this.initArray !== undefined){
+            if (this.initArray !== null && this.initArray !== undefined) {
                 this.relations[i] = this.initArray;
-            }else{
+            } else {
                 this.relations[i] = [];
             }
-            
+            }else{
+                console.error('view was null or undefined');
+            }
+
         },
         mapViewToCallback: function (view, callbackName) {
-            var viewIndex = this.getViewIndex(view);
-            var callbackIndex = this.getCallbackIndexByName(callbackName);
-            var relation = this.relations[viewIndex];
-            if(relation !== null && relation !== undefined){
-                this.relations[viewIndex].pushIfUnique(callbackIndex);
+            if (view && callbackName) {
+                var viewIndex = this.getViewIndex(view);
+                var callbackIndex = this.getCallbackIndexByName(callbackName);
+                var relation = this.relations[viewIndex];
+                if (relation !== null && relation !== undefined) {
+                    this.relations[viewIndex].pushIfUnique(callbackIndex);
+                } else {
+                    this.relations[viewIndex] = [callbackIndex];
+                }
             }else{
-                this.relations[viewIndex] = [callbackIndex];
+                console.error('view or callbackName was null or undefined');
             }
-            
+
 
         },
         getViewIndex: function (view) {
@@ -69,8 +77,12 @@ function getCallbackManager() {
             if (i !== undefined && i !== null) {
                 return i;
             } else {
-                console.log('view not found: ' + view);
+//                this.addView(view);
+
+                console.error('view not found: ' + view);
+                
                 return null;
+//                return this.getViewIndex(view);
             }
         },
         getCallbackIndexByName: function (callbackName) {
@@ -109,7 +121,7 @@ function getCallbackManager() {
                 console.log(self.callbacks[element].name);
             });
         },
-        printEverything: function(){
+        printEverything: function () {
             console.log('==============');
             console.log('initArray:');
             console.log(this.initArray);

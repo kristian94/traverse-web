@@ -1,6 +1,7 @@
 function getViewManager(callbackManagerIn) {
 
     return Object.seal({
+        animationManager: null,
         mainParentElement: null,
         previousView: null,
         currentView: null,
@@ -19,12 +20,10 @@ function getViewManager(callbackManagerIn) {
                 }
             ]
         },
-//        mapStandard: function() {
-//            var self = this;
-//            if(this.viewMappings){
-//                this.mapViews(this.viewMappings.standard);
-//            }
-//        },
+//        views: [
+//            
+//        ],
+        //CALLBACKS CURRENTLY NOT USED, THEY JUST GET BOUNCED TO loadViewAbstract()
         loadIndexPage: function (callback) {
             if (this.indexPage) {
                 this.loadViewAbstract(this.indexPage, callback);
@@ -57,8 +56,8 @@ function getViewManager(callbackManagerIn) {
 
                     $(self.mainParentElement).empty();
                     $(self.mainParentElement).append(data);
+                    self.mapViews(self.viewMappings.standard);
                     $(self.mainParentElement).show();
-                    self.mapViews(self.viewMappings.standard);           
                     self.callbackManager.triggerCallbacksByView(nextViewIn);
 
                 },
@@ -80,6 +79,23 @@ function getViewManager(callbackManagerIn) {
             $(element).on('click', function () {
                 self.loadNextView(view);
             });
+        },
+        fadeOutAndDeloadParent: function () {
+            if (this.animationManager) {
+                var self = this;
+                self.animationManager.fadeOutElement(self.mainParentElement, 250);
+                
+                
+                
+                
+                
+                
+            } else {
+                console.error('viewManager.fadeOutAndDeloadParent');
+                console.error('animationManager reference not initialized');
+            }
+
+
         }
 //        beforeRender: function () {
 //            this.beforeRenderFuncs.forEach(function (func) {
@@ -87,6 +103,6 @@ function getViewManager(callbackManagerIn) {
 //                func();
 //            });
 //        }
-        
+
     });
 }
